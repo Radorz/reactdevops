@@ -16,7 +16,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh  chmod +x path/to/./jenkins/scripts/test.sh
+                sh sh 'make check || true' 
+                junit '**/target/*.xml'
             }
         }
         stage('Deliver') {
