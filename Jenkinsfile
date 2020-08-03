@@ -17,7 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'make check || true' 
-                junit '**/target/*.xml'
+                junit allowEmptyResults: true, testResults: '**/test-results/*.xml'
             }
         }
         stage('Deliver') {
