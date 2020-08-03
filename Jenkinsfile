@@ -22,9 +22,15 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                  when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
+            }
+            steps {
+                sh 'make publish'
+            }
                 input message: 'Finished using the web site? (Click "Proceed" to continue)?'
-                sh './jenkins/scripts/kill.sh'
             }
         }
     }
