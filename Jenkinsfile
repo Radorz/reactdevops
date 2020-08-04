@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh 'set -x npm run build set +x set -x npm start & sleep 1  set +x'
+                sh ' -x npm run build +x  -x npm start & sleep 1 +x'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh 'chmod +x ./jenkins/scripts/kill.sh'
             }
